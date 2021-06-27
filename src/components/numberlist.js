@@ -1,13 +1,14 @@
 import React from 'react'
+import ButtonComponent from './ButtonComponent'
 
 
-let btnClick=0;
+
 const numberlist = (props) => {
       
     
-    const buttonColorChange = (e, BtnClick)=>{
-        
-     if(BtnClick%2===0){
+    const buttonColorChange = (e, isClicked)=>{
+    if(props.marks.length<=4){    
+     if(isClicked===true){
          e.target.style.backgroundColor='white';
          props.onRemoveMarks(e.target.name);
         
@@ -15,7 +16,17 @@ const numberlist = (props) => {
         e.target.style.backgroundColor='red';
         props.onAddmarks(e.target.name);
      }
+    }else{
+        alert("you cant select more than 5 numbers!!")
     }
+    }
+
+    const clearButtonColor = (e)=>{
+        
+           
+     
+    }
+
     
    const generateRandomNumbers = ()=> {
         let randArray=[];
@@ -25,111 +36,44 @@ const numberlist = (props) => {
         props.onAddRandom(randArray);
         }
    
-        const markSizeCheck = ()=>{
-            if(props.marks.length >4){
-                return true;
-            }
-            else{
-                return false;
-            }
-        }
 
     return (
-        
-        <div className="button">
-             
-                <button name="1" onClick={(event)=>{
-                    btnClick++;
-                    if(markSizeCheck){
-                    buttonColorChange(event, btnClick);}
-                    else{ alert("you cant select more than 5 numbers");
-                    }
-                }}>1</button>
-                <button name="2" onClick={(event)=>{
-                    btnClick++;
-                    buttonColorChange(event, btnClick);
-                }}>2</button>
-                <button name="3" onClick={(event)=>{
-                    btnClick++;
-                    buttonColorChange(event, btnClick);
-                }}>3</button>
-                <button name="4" onClick={(event)=>{
-                    btnClick++;
-                    buttonColorChange(event, btnClick);
-                }}>4</button>
-                <button name="5" onClick={(event)=>{
-                    btnClick++;
-                    buttonColorChange(event, btnClick);
-                }}>5</button>
-                <button name="6" onClick={(event)=>{
-                    btnClick++;
-                    buttonColorChange(event, btnClick);
-                }}>6</button> 
-                <button name="7" onClick={(event)=>{
-                    btnClick++;
-                    buttonColorChange(event, btnClick);
-                }}>7</button>
-                <button name="8" onClick={(event)=>{
-                    btnClick++;
-                    buttonColorChange(event, btnClick);
-                }}>8</button>
-                <button name="9" onClick={(event)=>{
-                    btnClick++;
-                    buttonColorChange(event, btnClick);
-                }}>9</button>
-                <button name="10" onClick={(event)=>{
-                    btnClick++;
-                    buttonColorChange(event, btnClick);
-                }}>10</button>
-                <button name="11" onClick={(event)=>{
-                    btnClick++;
-                    buttonColorChange(event, btnClick);
-                }}>11</button>
-                <button name="12" onClick={(event)=>{
-                    btnClick++;
-                    buttonColorChange(event, btnClick);
-                }}>12</button>
-                <button name="13" onClick={(event)=>{
-                    btnClick++;
-                    buttonColorChange(event, btnClick);
-                }}>13</button>
-                <button name="14" onClick={(event)=>{
-                    btnClick++;
-                    buttonColorChange(event, btnClick);
-                }}>14</button>
-                <button name="15" onClick={(event)=>{
-                    btnClick++;
-                    buttonColorChange(event, btnClick);
-                }}>15</button>
-                <button name="16" onClick={(event)=>{
-                    btnClick++;
-                    buttonColorChange(event, btnClick);
-                }}>16</button>
-                <button name="17" onClick={(event)=>{
-                    btnClick++;
-                    buttonColorChange(event, btnClick);
-                }}>17</button>
-                <button name="18" onClick={(event)=>{
-                    btnClick++;
-                    buttonColorChange(event, btnClick);
-                }}>18</button>
-                <button name="19" onClick={(event)=>{
-                    btnClick++;
-                    buttonColorChange(event, btnClick);
-                }}>19</button>
-                <button name="20" onClick={(event)=>{
-                    btnClick++;
-                    buttonColorChange(event, btnClick);
-                }}>20</button>
-                <button name="cash" className="cashButton">CASH</button>
-                <button name="clear" className="clearButton" onClick={()=>{
+        <>
+        <div className="grid grid-gap-1 grid-row-gap-2 grid-col-4 button">
+                <ButtonComponent value="1" onButtonColorChange={buttonColorChange}/>
+                <ButtonComponent value="2" onButtonColorChange={buttonColorChange}/>
+                <ButtonComponent value="3" onButtonColorChange={buttonColorChange}/>
+                <ButtonComponent value="4" onButtonColorChange={buttonColorChange}/>
+                <ButtonComponent value="5" onButtonColorChange={buttonColorChange}/>
+                <ButtonComponent value="6" onButtonColorChange={buttonColorChange}/>
+                <ButtonComponent value="7" onButtonColorChange={buttonColorChange}/>
+                <ButtonComponent value="8" onButtonColorChange={buttonColorChange}/>
+                <ButtonComponent value="9" onButtonColorChange={buttonColorChange}/>
+                <ButtonComponent value="10" onButtonColorChange={buttonColorChange}/>
+                <ButtonComponent value="11" onButtonColorChange={buttonColorChange}/>
+                <ButtonComponent value="12" onButtonColorChange={buttonColorChange}/>
+                <ButtonComponent value="13" onButtonColorChange={buttonColorChange}/>
+                <ButtonComponent value="14" onButtonColorChange={buttonColorChange}/>
+                <ButtonComponent value="15" onButtonColorChange={buttonColorChange}/>
+                <ButtonComponent value="16" onButtonColorChange={buttonColorChange}/>
+                <ButtonComponent value="17" onButtonColorChange={buttonColorChange}/>
+                <ButtonComponent value="18" onButtonColorChange={buttonColorChange}/>
+                <ButtonComponent value="19" onButtonColorChange={buttonColorChange}/>
+                <ButtonComponent value="20" onButtonColorChange={buttonColorChange}/>
+                
+               
+            </div>
+            <button name="cash" className="cashButton"  onClick={()=>{
+                props.onCashButton();
+            }}>CASH</button>
+                <button name="clear" className="clearButton" onClick={(event)=>{
                     props.onClearMarks();
+                    clearButtonColor(event);
                 }}>CLEAR</button>
                 <button name="random" className="randomButton" onClick={()=>{
                     generateRandomNumbers();
                 }}>RANDOM</button>
-               
-            </div>
+            </>
     )
 }
 

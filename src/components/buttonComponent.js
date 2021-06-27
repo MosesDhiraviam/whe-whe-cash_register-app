@@ -1,14 +1,23 @@
 import React from 'react'
+import {useState} from 'react'
 
-const buttonComponent = (props) => {
+const ButtonComponent = (props) => {
+
+
+    const [isClicked,setisClicked] = useState([false]);
+
     return (
         <div className="button-component">
-            <button name={props.value} onClick={(event)=>{
-                    
-                   props.onButtonColorChange(event)
+            <button className="numberbutton number-element" name={props.value} onClick={(event)=>{
+                     if(isClicked === true){
+                    setisClicked(false);
+                }else{
+                    setisClicked(true);
+                }
+                   props.onButtonColorChange(event,isClicked)
                 }}>{props.value}</button>
         </div>
     )
 }
 
-export default buttonComponent
+export default ButtonComponent
